@@ -33,6 +33,16 @@
         </div>
 
         <div class="form-group">
+            <label for="type" class="form-label">Types</label>
+            <select class="form-select" name="type_id" id="type">
+                <option value="">- - Scegli Un Type - - </option>
+                @foreach ($types as $elem)
+                    <option value="{{$elem->id}}" {{old('type_id', $mod_post->type_id) == $elem->id ? 'selected' : ''}}>{{$elem->name}}</option>
+                @endforeach
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="projects-path" class="form-label">Lang</label>
             <input type="file" id="projects-path" name="path"  class="form-control">
         </div>

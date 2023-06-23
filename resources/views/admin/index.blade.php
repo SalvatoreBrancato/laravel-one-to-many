@@ -11,6 +11,9 @@
                   <h5 class="card-title">{{$elem->title}}</h5>
                   <p class="card-text">{{$elem->description}}</p>
                   <div>{{$elem->lang}}</div>
+                  @if($elem->type)
+                  <div>{{$elem->type->name}}</div>
+                  @endif
                 </div>    
             </div>
         </a>

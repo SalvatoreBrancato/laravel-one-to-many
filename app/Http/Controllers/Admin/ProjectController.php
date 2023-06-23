@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\UpdatePostRequest;
 use App\Http\Requests\StorePostRequest;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Admin\Type;
 
 
 
@@ -31,7 +32,8 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('admin.create');
+        $types = Type::all();
+        return view('admin.create', compact('types'));
     }
 
     /**
@@ -95,8 +97,9 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $mod_post =  Project::find($id);
-        return view('admin.edit', compact('mod_post'));
-        //return view('admin.edit', compact('project'));
+        $types = Type::all();
+        return view('admin.edit', compact('mod_post','types'));
+        
     }
 
     /**
@@ -117,10 +120,12 @@ class ProjectController extends Controller
         //     'title-max'=>'Il titolo supera il valore massimo' 
         //  ]);
         $mod_post = Project::find($id);
+        //dd($mod_post);
         $form_data = $request->all();
+
         if ($request->hasFile('path')) {
-            if( $request->path ){
-                Storage::delete($request->path);
+            if( $mod_post->path ){
+                Storage::delete($mod_post->path);
             }
 
             //     //Genere un path di dove verrà salvata l'iimagine nel progetto

@@ -10,6 +10,9 @@
                   <h5 class="card-title">{{$elem->title}}</h5>
                   <p class="card-text">{{$elem->description}}</p>
                 <div class="btn btn-primary">{{$elem->lang}}</div>
+                @if($elem->type)
+                  <div>{{$elem->type->name}}</div>
+                  @endif
             </div>
         </div>
 </div>

@@ -14,5 +14,10 @@ class Project extends Model
         'description',
         'lang',
         'path',
+        'type_id',
     ];
+
+    public function type(){
+        return $this->belongsTo(Type::class);
+    }
 }
